@@ -1,7 +1,9 @@
-const jwt = require("jsonwebtoken");
+// utils/token.js
+const jwt = require('jsonwebtoken');
+const SECRET_KEY = 'your-secret-key'; // Move this to environment variables in production
 
-const createNewToken = (payload) => {
-    return jwt.sign({ userId: payload }, process.env.SECRET_KEY, { expiresIn: '10d' });
+function createNewToken(userId) {
+    return jwt.sign({ id: userId }, SECRET_KEY, { expiresIn: '1h' });
 }
 
-module.exports = { createNewToken }
+module.exports = { createNewToken };
